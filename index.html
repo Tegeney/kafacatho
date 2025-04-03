@@ -1,6 +1,979 @@
-        <section class="intro" aria-labelledby="intro-heading">
-            <h2 id="intro-heading">Welcome to Kafa Catholic Martyrs Memorial Primary School</h2>
-            <p>Located in Kafa, Ethiopia, our school offers top-tier Catholic education. Explore our top Grade 6 and Grade 8 students of 2025, celebrated for their academic excellence and leadership skills.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kafa Catholic Martyrs Memorial Primary School in Ethiopia celebrates academic excellence with student achievements in Grade 6 and 8. Discover our top performers, school news, and contact information.">
+    <meta name="keywords" content="Kafa Catholic School, Ethiopian primary education, student rankings, Kafa region schools, quality education Ethiopia">
+    <meta name="author" content="Kafa Catholic Martyrs Memorial Primary School">
+    <meta property="og:title" content="Kafa Catholic School - Celebrating Student Excellence">
+    <meta property="og:description" content="Discover our top performing students in Grade 6 and 8 at Kafa Catholic Martyrs Memorial Primary School">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kafacatholic.edu.et">
+    <title>Kafa Catholic Martyrs Memorial Primary School - Student Stars</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-green: #00923F;
+            --primary-yellow: #FFC107;
+            --primary-red: #D81E05;
+            --text-dark: #2c3e50;
+            --text-light: #f5f5f5;
+            --shadow: 0 2px 5px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #f5f5f5;
+        }
+        
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary-green);
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+        
+        .skip-link:focus {
+            top: 0;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Bubblegum Sans', cursive;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-green), var(--primary-yellow), var(--primary-red));
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .school-logo {
+            height: 80px;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            padding: 1rem;
+            backdrop-filter: blur(5px);
+        }
+        
+        .nav a {
+            color: var(--text-dark);
+            text-decoration: none;
+            margin: 0 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: var(--transition);
+            font-weight: bold;
+            position: relative;
+        }
+        
+        .nav a:hover, .nav a:focus {
+            background-color: var(--primary-green);
+            color: white;
+        }
+        
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--primary-yellow);
+            transition: var(--transition);
+        }
+        
+        .nav a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        
+        .grade-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .grade-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            color: var(--primary-green);
+            border-bottom: 2px solid var(--primary-yellow);
+            padding-bottom: 10px;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .rank-group {
+            display: none;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .rank-group.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .student-card {
+            width: 280px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .student-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .top-3-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: var(--primary-yellow);
+            color: var(--text-dark);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: var(--shadow);
+            z-index: 2;
+        }
+        
+        .student-img-container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+        
+        .student-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .student-card:hover .student-img {
+            transform: scale(1.05);
+        }
+        
+        .description {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            text-align: left;
+            flex-grow: 1;
+            line-height: 1.5;
+        }
+        
+        .student-name {
+            font-size: 1.2rem;
+            color: var(--primary-red);
+            margin-bottom: 0.5rem;
+            transition: var(--transition);
+        }
+        
+        .student-card:hover .student-name {
+            color: var(--primary-green);
+        }
+        
+        .student-rank {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--primary-green);
+        }
+        
+        .rank-nav {
+            width: 100%;
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        button {
+            background-color: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+            margin: 0 0.5rem;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 600;
+        }
+        
+        button:hover, button:focus {
+            background-color: var(--primary-red);
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+        
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin: 2rem 0;
+            color: var(--primary-green);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: var(--primary-yellow);
+            margin: 0.5rem auto 0;
+        }
+        
+        #news {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .news-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px dashed #ccc;
+            transition: var(--transition);
+        }
+        
+        .news-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .news-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .news-item h3 {
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+        }
+        
+        .news-date {
+            color: var(--primary-red);
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        #contact {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .contact-info h3 {
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+        
+        .contact-info p {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--primary-green);
+            min-width: 20px;
+        }
+        
+        .contact-form h3 {
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Open Sans', sans-serif;
+            transition: var(--transition);
+        }
+        
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--primary-green);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0,146,63,0.2);
+        }
+        
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .form-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        
+        .error-message {
+            color: var(--primary-red);
+            font-size: 0.8rem;
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--primary-green), var(--primary-yellow), var(--primary-red));
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .social-links {
+            margin: 1rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 0.8rem;
+            font-size: 1.5rem;
+            transition: var(--transition);
+            display: inline-block;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary-yellow);
+            transform: translateY(-3px) scale(1.1);
+        }
+        
+        .heart {
+            color: var(--primary-red);
+            animation: pulse 1.5s infinite;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem;
+            border-radius: 5px;
+            color: white;
+            box-shadow: var(--shadow);
+            transform: translateX(200%);
+            transition: transform 0.3s ease;
+            z-index: 2000;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification.success {
+            background-color: var(--primary-green);
+        }
+        
+        .notification.error {
+            background-color: var(--primary-red);
+        }
+        
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        header:hover {
+            animation: pulse 3s infinite;
+        }
+        
+        /* Accessibility Focus Styles */
+        a:focus, button:focus, input:focus, textarea:focus {
+            outline: 3px solid var(--primary-yellow);
+            outline-offset: 3px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .nav {
+                flex-wrap: wrap;
+                padding: 0.5rem;
+            }
+            
+            .nav a {
+                margin: 0.3rem;
+                padding: 0.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .student-card {
+                width: 100%;
+                max-width: 350px;
+                min-height: auto;
+            }
+            
+            .grade-section, #news, #contact {
+                padding: 1.5rem;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .nav a {
+                width: 100%;
+                text-align: center;
+                margin: 0.2rem 0;
+            }
+            
+            .student-img-container {
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <header>
+        <div class="header-content">
+            <img src="images/logo.png" alt="Kafa Catholic Martyrs Memorial Primary School Logo" class="school-logo">
+            <h1>Kafa Catholic Martyrs Memorial Primary School</h1>
+            <p class="subtitle">የካፋ ካቶሊክ ሰማዕታት አንድኛ ድረጃ ት/ቤት</p>
+        </div>
+    </header>
+    
+    <nav class="nav" aria-label="Main navigation">
+        <a href="#grade6">Grade 6 Stars</a>
+        <a href="#grade8">Grade 8 Stars</a>
+        <a href="#news">News & Events</a>
+        <a href="#contact">Contact Us</a>
+    </nav>
+    
+    <main id="main-content" class="container">
+        <!-- Grade 6 Section -->
+        <section id="grade6" class="grade-section" aria-labelledby="grade6-heading">
+            <h2 id="grade6-heading">Grade 6 Stars</h2>
+            <!-- Top 3 -->
+            <div id="grade6-top3" class="rank-group active">
+                <div class="student-card">
+                    <div class="top-3-badge">1</div>
+                    <div class="student-img-container">
+                        <img src="images/k.jpg" alt="Betelhem, Grade 6 top student holding math textbook" class="student-img" loading="lazy" width="280" height="200">
+                    </div>
+                    <p class="description">Betelhem excels in mathematics, solving complex problems with ease. She loves tutoring peers and aspires to be an engineer. In her spare time, she plays volleyball and studies Ethiopian history, hoping to build bridges that connect communities one day!</p>
+                    <h3 class="student-name">Betelhem</h3>
+                    <p class="student-rank">1st - Top in Math</p>
+                </div>
+                <div class="student-card">
+                    <div class="top-3-badge">2</div>
+                    <div class="student-img-container">
+                        <img src="images/k.jpg" alt="Dawit smiling in school uniform" class="student-img" loading="lazy" width="280" height="200">
+                    </div>
+                    <p class="description">Dawit shines in all subjects, always eager to learn more. He enjoys science experiments and dreams of becoming a doctor. Outside class, he plays football and reads about Ethiopian inventors, aiming to improve healthcare in his village!</p>
+                    <h3 class="student-name">Dawit</h3>
+                    <p class="student-rank">2nd - Highest Overall</p>
+                </div>
+                <div class="student-card">
+                    <div class="top-3-badge">3</div>
+                    <div class="student-img-container">
+                        <img src="images/k.jpg" alt="Meron reading an English book" class="student-img" loading="lazy" width="280" height="200">
+                    </div>
+                    <p class="description">Meron is a star in English, writing amazing essays. She loves reading novels and wants to be a journalist. She plays netball and learns about Ethiopian culture, dreaming of telling stories that inspire the world!</p>
+                    <h3 class="student-name">Meron</h3>
+                    <p class="student-rank">3rd - Top in English</p>
+                </div>
+                <div class="rank-nav">
+                    <button onclick="showRank('grade6-4-10')" aria-label="Show more Grade 6 students">View All Students</button>
+                </div>
+            </div>
+            <!-- Ranks 4-10 -->
+            <div id="grade6-4-10" class="rank-group">
+                <div class="student-card">
+                    <div class="student-img-container">
+                        <img src="images/k.jpg" alt="Tsegaye conducting a science experiment" class="student-img" loading="lazy" width="280" height="200">
+                    </div>
+                    <p class="description">Tsegaye excels in science, loving experiments with friends. He's curious about technology and aims to be an inventor. He enjoys basketball and studying Ethiopian innovations, hoping to create tools that help farmers in his community!</p>
+                    <h3 class="student-name">Tsegaye</h3>
+                    <p class="student-rank">4th - Top in Science</p>
+                </div>
+                <div class="student-card">
+                    <div class="student-img-container">kstudents/aster.jpg" alt="Aster drawing a historical map" class="student-img" loading="lazy" width="280" height="200">
+                    </div>
+                    <p class="description">Aster works hard in history, fascinated by Ethiopia's past. She dreams of being a historian and loves drawing maps. She plays soccer and shares stories with friends, wanting to preserve her heritage for the future!</p>
+                    <h3 class="student-name">Aster</h3>
+                    <p class="student-rank">5th - Top in History</p>
+                </div>
+                <div class="student-card">
+                    <div class="student-img-container">
+                        <img src="images/k.jpg" alt="Yared painting a colorful artwork" class="student-img" loading="lazy" width="280" height="200">
+                    </div>
+                    <p class="description">Yared is great at art, creating stunning drawings. He enjoys music and wants to be a designer. He plays traditional games and studies Ethiopian patterns, aiming to blend culture into modern designs one day!</p>
+                    <h3 class="student-name">Yared</h3>
+                    <p class="student-rank">6th - Creative Star</p>
+                </div>
+                <div class="student-card">
+                    <div class="student-img-container">
+                        <img src="images/k.jpg" alt="Elias pointing at a world map" class="student-img" loading="lazy" width="280" height="200">
+                    </div>
+                    <p class="description">Elias shines in geography, mapping Ethiopia's landscapes. He loves hiking and dreams of being an explorer. He plays volleyball and studies nature, hoping to teach others about the beauty of his country's terrain!</p>
+                    <h3 class="student-name">Elias</h3>
+                    <p class="student-rank">7th - Top in Geography</p>
+                </div>
+                <div class="student-card">
+                    <div class="student-img-container">
+                        <img src="images/k.jpg" alt="Sara writing in Amharic" class="student-img" loading="lazy" width="280" height="200">
+                    </div>
+                    <p class="description">Sara excels in Amharic, writing beautiful poems. She enjoys storytelling and wants to be a writer. She plays hide-and-seek and learns traditional songs, dreaming of sharing Ethiopia's voice with the world!</p>
+                    <h3 class="student-name">Sara</h3>
+                    <p class="student-rank">8th - Top in Amharic</p>
+                </div>
+                <div class="student-card">
+                    <div class="student-img-container">
+                        <img src="images/k.jpg" alt="Kaleb running on the sports field" class="student-img" loading="lazy" width="280" height="200">
+                    </div>
+                    <p class="description">Kaleb works hard, improving every day. He loves sports and aims to be a coach. He plays football and studies teamwork, hoping to lead his peers to success with his positive energy!</p>
+                    <h3 class="student-name">Kaleb</h3>
+                    <p class="student-rank">9th - Best Effort</p>
+                </div>
+                <div class="student-card">
+                    <div class="student-img-container">
+                        <img src="images/k.jpg" alt="Fikir participating in a group discussion" class="student-img" loading="lazy" width="280" height="200">
+                    </div>
+                    <p class="description">Fikir is great at social studies, understanding communities. She enjoys debates and wants to be a leader. She plays tag and learns about Ethiopian unity, aiming to bring people together in the future!</p>
+                    <h3 class="student-name">Fikir</h3>
+                    <p class="student-rank">10th - Top in Social Studies</p>
+                </div>
+                <div class="rank-nav">
+                    <button onclick="showRank('grade6-top3')" aria-label="Show top 3 Grade 6 students">Back to Top 3</button>
+                </div>
+            </div>
         </section>
+        
+        <!-- Grade 8 Section -->
+        <section id="grade8" class="grade-section" aria-labelledby="grade8-heading">
+            <h2 id="grade8-heading">Grade 8 Stars</h2>
+            <!-- Top 3 -->
+            <div id="grade8-top3" class="rank-group active">
+                <div class="student-card">
+                    <div class="top-3-badge">1</div>
+                    <div class="student-img-container">
+                        <img src="images/k.jpg" alt="Lidya working on a science experiment" class="student-img" loading="lazy" width="280" height="200">
+                    </div>
+                    <p class="description">Lidya is a science star, fascinated by biology and chemistry. She leads class projects and wants to be a researcher. She enjoys debating and learning about Ethiopian wildlife, dreaming of discovering new ways to protect nature!</p>
+                    <h3 class="student-name">Lidya</h3>
+                    <p class="student-rank">1st - Top in Science</p>
+                </div>
+                <div class="student-card">
+                    <div class="top-3-badge">2</div>
+                    <div class="student-img-container">
+                        <img src="images/k.jpg" alt="Samuel sketching architectural designs" class="student-img" loading="lazy" width="280" height="200">
+                    </div>
+                    <p class="description">Samuel puts in amazing effort, improving every day. He's passionate about art and history, often sketching Ethiopian landmarks. He plays basketball and aims to be an architect, designing buildings that honor his culture!</p>
+                    <h3 class="student-name">Samuel</h3>
+                    <p class="student-rank">2nd - Best Effort</p>
+                </div>
+                <div class="student-card">
+                    <div class="top-3-badge">3</div>
+                    <div class="student-img-container">
+                        <img src="images/k.jpg" alt="Helen solving math problems" class="student-img" loading="lazy" width="280" height="200">
+                    </div>
+                    <p class="description">Helen excels in math, tackling equations with confidence. She loves puzzles and dreams of being a mathematician. She plays volleyball and studies Ethiopian numbers, hoping to solve big problems for her community!</p>
+                    <h3 class="student-name">Helen</h3>
+                    <p class="student-rank">3rd - Top in Math</p>
+                </div>
+                <div class="rank-nav">
+                    <button onclick="showRank('grade8-4-10')" aria-label="Show more Grade 8 students">View All Students</button>
+                </div>
+            </div>
+            <!-- Ranks 4-10 -->
+            <div id="grade8-4-10" class="rank-group">
+                <div class="student-card">
+                    <div class="student-img-container">
+                        <img src="images/k.jpg" alt="Bereket writing a story in English" class="student-img" loading="lazy" width="280" height="200">
+                    </div>
+                    <p class="description">Bereket shines in English, writing creative stories. He enjoys drama and wants to be a playwright. He plays soccer and learns about Ethiopian literature, aiming to share tales that inspire audiences worldwide!</p>
+                    <h3 class="student-name">Bereket</h3>
+                    <p class="student-rank">4th - Top in English</p>
+                </div>
+                <div class="student-card">
+                    <div class="student-img-container">
+                        <img src="images/k.jpg" alt="Tigist examining historical artifacts" class="student-img" loading="lazy" width="280" height="200">
+                    </div>
+                    <p class="description">Tigist is great at history, loving Ethiopia's rich past. She dreams of being an archaeologist and enjoys drawing artifacts. She plays netball and studies ancient sites, hoping to uncover hidden treasures!</p>
+                    <h3 class="student-name">Tigist</h3>
+                    <p class="student-rank">5th - Top in History</p>
+                </div>
+                <div class="student-card">
+                    <div class="student-img-container">
+                        <img src="images/k.jpg" alt="Abebe pointing at a geographical map" class="student-img" loading="lazy" width="280" height="200">
+                    </div>
+                    <p class="description">Abebe excels in geography, mapping the world. He loves hiking and aims to be a geographer. He plays traditional games and studies Ethiopian land, dreaming of teaching others about its beauty!</p>
+                    <h3 class="student-name">Abebe</h3>
+                    <p class="student-rank">6th - Top in Geography</p>
+                </div>
+                <div class="student-card">
+                    <div class="student-img-container">
+                        <img src="images/k.jpg" alt="Ruth writing in Amharic" class="student-img" loading="lazy" width="280" height="200">
+                    </div>
+                    <p class="description">Ruth is a star in Amharic, crafting beautiful prose. She enjoys poetry and wants to be a teacher. She plays tag and learns traditional songs, hoping to pass down Ethiopia's language to others!</p>
+                    <h3 class="student-name">Ruth</h3>
+                    <p class="student-rank">7th - Top in Amharic</p>
+                </div>
+                <div class="student-card">
+                    <div class="student-img-container">
+                        <img src="images/k.jpg" alt="Mikiyas playing basketball" class="student-img" loading="lazy" width="280" height="200">
+                    </div>
+                    <p class="description">Mikiyas works hard, always pushing forward. He loves sports and dreams of being a coach. He plays basketball and studies teamwork, aiming to lead his peers with strength and positivity!</p>
+                    <h3 class="student-name">Mikiyas</h3>
+                    <p class="student-rank">8th - Best Effort</p>
+                </div>
+                <div class="student-card">
+                    <div class="student-img-container">
+                        <img src="images/k.jpg" alt="Selamawit painting a colorful artwork" class="student-img" loading="lazy" width="280" height="200">
+                    </div>
+                    <p class="description">Selamawit excels in art, painting vibrant scenes. She enjoys music and wants to be an artist. She plays dance games and studies Ethiopian designs, dreaming of showcasing her culture globally!</p>
+                    <h3 class="student-name">Selamawit</h3>
+                    <p class="student-rank">9th - Creative Star</p>
+                </div>
+                <div class="student-card">
+                    <div class="student-img-container">
+                        <img src="images/k.jpg" alt="Natnael participating in a debate" class="student-img" loading="lazy" width="280" height="200">
+                    </div>
+                    <p class="description">Natnael shines in social studies, understanding society. He loves debates and aims to be a lawyer. He plays football and studies Ethiopian unity, hoping to fight for justice in his community!</p>
+                    <h3 class="student-name">Natnael</h3>
+                    <p class="student-rank">10th - Top in Social Studies</p>
+                </div>
+                <div class="rank-nav">
+                    <button onclick="showRank('grade8-top3')" aria-label="Show top 3 Grade 8 students">Back to Top 3</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- News Section -->
+        <section id="news" aria-labelledby="news-heading">
+            <h2 id="news-heading" class="section-title">School News & Events</h2>
+            <div id="news-items">
+                <div class="news-item">
+                    <h3>Annual Science Fair 2025</h3>
+                    <span class="news-date">April 15, 2025</span>
+                    <p>Join us for an exciting day of experiments and discoveries at our Annual Science Fair. Students will showcase innovative projects in biology, chemistry, and physics. The event will feature special guest judges from Addis Ababa University's Science Department.</p>
+                </div>
+                <div class="news-item">
+                    <h3>Graduation Ceremony</h3>
+                    <span class="news-date">June 20, 2025</span>
+                    <p>Celebrating our Grade 8 stars as they complete their primary education journey. The ceremony will take place in the school courtyard at 10:00 AM, followed by a cultural performance and lunch reception. All parents and community members are welcome.</p>
+                </div>
+                <div class="news-item">
+                    <h3>Parent-Teacher Meetings</h3>
+                    <span class="news-date">May 5-7, 2025</span>
+                    <p>Schedule your appointment to discuss your child's progress and achievements. Meetings will be held from 2:00 PM to 5:00 PM each day. Please sign up at the school office or contact your child's homeroom teacher to reserve your time slot.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section id="contact" aria-labelledby="contact-heading">
+            <h2 id="contact-heading" class="section-title">Contact Us</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>School Information</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> Kafa Catholic Martyrs Memorial Primary School, Kafa, Ethiopia</p>
+                    <p><i class="fas fa-phone"></i> <strong>Phone:</strong> +251 XX XXX XXXX</p>
+                    <p><i class="fas fa-envelope"></i> <strong>Email:</strong> info@kafacatholic.edu.et</p>
+                    <p><i class="fas fa-clock"></i> <strong>Hours:</strong> Monday-Friday, 8:00 AM - 4:00 PM</p>
+                    <p><i class="fas fa-bus"></i> <strong>Transport:</strong> School bus service available in surrounding areas</p>
+                    
+                    <h3 style="margin-top: 2rem;">Our Mission</h3>
+                    <p><i class="fas fa-star"></i> To provide quality Catholic education that develops the whole person - spiritually, intellectually, physically, and socially.</p>
+                    <p><i class="fas fa-star"></i> To nurture ethical leaders who will serve their communities with compassion and integrity.</p>
+                </div>
+                <div class="contact-form">
+                    <h3>Send Us a Message</h3>
+                    <form id="contactForm" action="https://formspree.io/f/your-form-id" method="POST">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Your Name" required aria-label="Your Name" minlength="2">
+                            <div class="error-message" id="name-error"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Your Email" required aria-label="Your Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                            <div class="error-message" id="email-error"></div>
+                        </div>
+                        
+                        <input type="text" name="subject" placeholder="Subject" aria-label="Subject">
+                        
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Your Message" required aria-label="Your Message" minlength="10"></textarea>
+                            <div class="error-message" id="message-error"></div>
+                        </div>
+                        
+                        <button type="submit" id="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="social-links">
+            <a href="https://facebook.com/kafacatholic" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="https://twitter.com/kafacatholic" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com/kafacatholic" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://youtube.com/kafacatholic" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p>© 2025 Kafa Catholic Martyrs Memorial Primary School. All rights reserved.</p>
+        <p>Made with <span class="heart">❤️</span> by Love Tegene (<a href="https://t.me/tegene" target="_blank" style="color: white;">t.me/tegene</a>)</p>
+    </footer>
 
-  
+    <div id="notification" class="notification"></div>
+
+    <!-- JavaScript -->
+    <script>
+        // Improved rank toggle function with smooth transitions
+        function showRank(rankId) {
+            const grade = rankId.split('-')[0];
+            const groups = document.querySelectorAll(`#${grade} .rank-group`);
+            
+            // Add animation class to current active group before hiding
+            const activeGroup = document.querySelector(`#${grade} .rank-group.active`);
+            if (activeGroup) {
+                activeGroup.classList.add('fade-out');
+            }
+            
+            setTimeout(() => {
+                groups.forEach(group => {
+                    group.classList.remove('active', 'fade-out');
+                });
+                
+                const target = document.getElementById(rankId);
+                target.classList.add('active');
+                
+                // Smooth scroll to section
+                const section = target.closest('.grade-section');
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 300);
+        }
+        
+        // Form validation and submission
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('submit-btn');
+            const notification = document.getElementById('notification');
+            
+            if (contactForm) {
+                // Form validation
+                contactForm.addEventListener('input', function(e) {
+                    const field = e.target;
+                    const errorElement = document.getElementById(`${field.name}-error`);
+                    
+                    if (field.validity.valid) {
+                        field.classList.remove('invalid');
+                        if (errorElement) errorElement.textContent = '';
+                    } else {
+                        showError(field);
+                    }
+                });
+                
+                // Form submission
+                contactForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    // Validate all fields
+                    let isValid = true;
+                    const fields = contactForm.querySelectorAll('[required]');
+                    fields.forEach(field => {
+                        if (!field.validity.valid) {
+                            showError(field);
+                            isValid = false;
+                        }
+                    });
+                    
+                    if (!isValid) return;
+                    
+                    try {
+                        // Disable submit button
+                        submitBtn.disabled = true;
+                        submitBtn.textContent = 'Sending...';
+                        
+                        // Simulate form submission (replace with actual fetch in production)
+                        await new Promise(resolve => setTimeout(resolve, 1500));
+                        
+                        // Show success message
+                        showNotification('Thank you! Your message has been sent successfully.', 'success');
+                        contactForm.reset();
+                    } catch (error) {
+                        showNotification('Sorry, there was an error sending your message. Please try again later.', 'error');
+                        console.error('Form submission error:', error);
+                    } finally {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Send Message';
+                    }
+                });
+                
+                function showError(field) {
+                    const errorElement = document.getElementById(`${field.name}-error`);
+                    field.classList.add('invalid');
+                    
+                    if (field.validity.valueMissing) {
+                        errorElement.textContent = 'This field is required';
+                    } else if (field.validity.typeMismatch) {
+                        errorElement.textContent = 'Please enter a valid email address';
+                    } else if (field.validity.tooShort) {
+                        errorElement.textContent = `Please enter at least ${field.minLength} characters`;
+                    } else if (field.validity.patternMismatch) {
+                        errorElement.textContent = 'Please enter a valid email address';
+                    }
+                }
+            }
+            
+            function showNotification(message, type = 'success') {
+                notification.textContent = message;
+                notification.className = `notification show ${type}`;
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 5000);
+            }
+            
+            // Lazy load images that are not in the initial view
+            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src || img.src;
+                        observer.unobserve(img);
+                    }
+                });
+            });
+            
+            lazyImages.forEach(img => {
+                // Store original src in data-src if not already set
+                if (!img.dataset.src) {
+                    img.dataset.src = img.src;
+                    // Show placeholder until loaded
+                    img.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyODAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjgwIDIwMCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iI2VlZWVlZSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjOTk5IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiPkxvYWRpbmcuLi48L3RleHQ+PC9zdmc+';
+                }
+                imageObserver.observe(img);
+            });
+        });
+    </script>
+</body>
+</html>
