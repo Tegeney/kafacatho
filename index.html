@@ -15,6 +15,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
     <style>
         :root {
             --primary-green: #00923F;
@@ -567,264 +568,111 @@
     </nav>
     
     <main id="main-content" class="container">
-        <!-- Grade 6 Section -->
-        <section id="grade6" class="grade-section" aria-labelledby="grade6-heading">
-            <h2 id="grade6-heading">Grade 6 Stars</h2>
-            <!-- Top 3 -->
-            <div id="grade6-top3" class="rank-group active">
-                <div class="student-card">
-                    <div class="top-3-badge">1</div>
-                    <div class="student-img-container">
-                        <img src="images/k.jpg" alt="Betelhem, Grade 6 top student holding math textbook" class="student-img" loading="lazy" width="280" height="200">
-                    </div>
-                    <p class="description">Betelhem excels in mathematics, solving complex problems with ease. She loves tutoring peers and aspires to be an engineer. In her spare time, she plays volleyball and studies Ethiopian history, hoping to build bridges that connect communities one day!</p>
-                    <h3 class="student-name">Betelhem</h3>
-                    <p class="student-rank">1st - Top in Math</p>
-                </div>
-                <div class="student-card">
-                    <div class="top-3-badge">2</div>
-                    <div class="student-img-container">
-                        <img src="images/k.jpg" alt="Dawit smiling in school uniform" class="student-img" loading="lazy" width="280" height="200">
-                    </div>
-                    <p class="description">Dawit shines in all subjects, always eager to learn more. He enjoys science experiments and dreams of becoming a doctor. Outside class, he plays football and reads about Ethiopian inventors, aiming to improve healthcare in his village!</p>
-                    <h3 class="student-name">Dawit</h3>
-                    <p class="student-rank">2nd - Highest Overall</p>
-                </div>
-                <div class="student-card">
-                    <div class="top-3-badge">3</div>
-                    <div class="student-img-container">
-                        <img src="images/k.jpg" alt="Meron reading an English book" class="student-img" loading="lazy" width="280" height="200">
-                    </div>
-                    <p class="description">Meron is a star in English, writing amazing essays. She loves reading novels and wants to be a journalist. She plays netball and learns about Ethiopian culture, dreaming of telling stories that inspire the world!</p>
-                    <h3 class="student-name">Meron</h3>
-                    <p class="student-rank">3rd - Top in English</p>
-                </div>
-                <div class="rank-nav">
-                    <button onclick="showRank('grade6-4-10')" aria-label="Show more Grade 6 students">View All Students</button>
-                </div>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1>Welcome to Kafa Catholic Martyrs Memorial Primary School</h1>
+                <p>Nurturing minds, Building futures, Celebrating excellence</p>
+                <a href="#about" class="cta-button">Learn More</a>
             </div>
-            <!-- Ranks 4-10 -->
-            <div id="grade6-4-10" class="rank-group">
-                <div class="student-card">
-                    <div class="student-img-container">
-                        <img src="images/k.jpg" alt="Tsegaye conducting a science experiment" class="student-img" loading="lazy" width="280" height="200">
-                    </div>
-                    <p class="description">Tsegaye excels in science, loving experiments with friends. He's curious about technology and aims to be an inventor. He enjoys basketball and studying Ethiopian innovations, hoping to create tools that help farmers in his community!</p>
-                    <h3 class="student-name">Tsegaye</h3>
-                    <p class="student-rank">4th - Top in Science</p>
+        </section>
+
+        <section class="section" id="about">
+            <div class="container">
+                <div class="section-title">
+                    <h2>About Our School</h2>
+                    <p>Building a foundation for academic excellence and moral values</p>
                 </div>
-                <div class="student-card">
-                    <div class="student-img-container">kstudents/aster.jpg" alt="Aster drawing a historical map" class="student-img" loading="lazy" width="280" height="200">
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>Kafa Catholic Martyrs Memorial Primary School is committed to providing quality education in a nurturing environment. Our dedicated teachers and staff work together to ensure every student reaches their full potential.</p>
                     </div>
-                    <p class="description">Aster works hard in history, fascinated by Ethiopia's past. She dreams of being a historian and loves drawing maps. She plays soccer and shares stories with friends, wanting to preserve her heritage for the future!</p>
-                    <h3 class="student-name">Aster</h3>
-                    <p class="student-rank">5th - Top in History</p>
-                </div>
-                <div class="student-card">
-                    <div class="student-img-container">
-                        <img src="images/k.jpg" alt="Yared painting a colorful artwork" class="student-img" loading="lazy" width="280" height="200">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <i class="fas fa-user-graduate"></i>
+                            <h3>500+</h3>
+                            <p>Students</p>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <h3>30+</h3>
+                            <p>Teachers</p>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-trophy"></i>
+                            <h3>95%</h3>
+                            <p>Success Rate</p>
+                        </div>
                     </div>
-                    <p class="description">Yared is great at art, creating stunning drawings. He enjoys music and wants to be a designer. He plays traditional games and studies Ethiopian patterns, aiming to blend culture into modern designs one day!</p>
-                    <h3 class="student-name">Yared</h3>
-                    <p class="student-rank">6th - Creative Star</p>
-                </div>
-                <div class="student-card">
-                    <div class="student-img-container">
-                        <img src="images/k.jpg" alt="Elias pointing at a world map" class="student-img" loading="lazy" width="280" height="200">
-                    </div>
-                    <p class="description">Elias shines in geography, mapping Ethiopia's landscapes. He loves hiking and dreams of being an explorer. He plays volleyball and studies nature, hoping to teach others about the beauty of his country's terrain!</p>
-                    <h3 class="student-name">Elias</h3>
-                    <p class="student-rank">7th - Top in Geography</p>
-                </div>
-                <div class="student-card">
-                    <div class="student-img-container">
-                        <img src="images/k.jpg" alt="Sara writing in Amharic" class="student-img" loading="lazy" width="280" height="200">
-                    </div>
-                    <p class="description">Sara excels in Amharic, writing beautiful poems. She enjoys storytelling and wants to be a writer. She plays hide-and-seek and learns traditional songs, dreaming of sharing Ethiopia's voice with the world!</p>
-                    <h3 class="student-name">Sara</h3>
-                    <p class="student-rank">8th - Top in Amharic</p>
-                </div>
-                <div class="student-card">
-                    <div class="student-img-container">
-                        <img src="images/k.jpg" alt="Kaleb running on the sports field" class="student-img" loading="lazy" width="280" height="200">
-                    </div>
-                    <p class="description">Kaleb works hard, improving every day. He loves sports and aims to be a coach. He plays football and studies teamwork, hoping to lead his peers to success with his positive energy!</p>
-                    <h3 class="student-name">Kaleb</h3>
-                    <p class="student-rank">9th - Best Effort</p>
-                </div>
-                <div class="student-card">
-                    <div class="student-img-container">
-                        <img src="images/k.jpg" alt="Fikir participating in a group discussion" class="student-img" loading="lazy" width="280" height="200">
-                    </div>
-                    <p class="description">Fikir is great at social studies, understanding communities. She enjoys debates and wants to be a leader. She plays tag and learns about Ethiopian unity, aiming to bring people together in the future!</p>
-                    <h3 class="student-name">Fikir</h3>
-                    <p class="student-rank">10th - Top in Social Studies</p>
-                </div>
-                <div class="rank-nav">
-                    <button onclick="showRank('grade6-top3')" aria-label="Show top 3 Grade 6 students">Back to Top 3</button>
                 </div>
             </div>
         </section>
-        
-        <!-- Grade 8 Section -->
-        <section id="grade8" class="grade-section" aria-labelledby="grade8-heading">
-            <h2 id="grade8-heading">Grade 8 Stars</h2>
-            <!-- Top 3 -->
-            <div id="grade8-top3" class="rank-group active">
-                <div class="student-card">
-                    <div class="top-3-badge">1</div>
-                    <div class="student-img-container">
-                        <img src="images/k.jpg" alt="Lidya working on a science experiment" class="student-img" loading="lazy" width="280" height="200">
+
+        <section class="section" id="students">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Top Performing Students</h2>
+                    <p>Celebrating our academic achievers</p>
+                </div>
+                <div class="grade-section">
+                    <h3>Grade 6 Top Performers</h3>
+                    <div class="rank-group active">
+                        <!-- Student cards will be dynamically populated -->
                     </div>
-                    <p class="description">Lidya is a science star, fascinated by biology and chemistry. She leads class projects and wants to be a researcher. She enjoys debating and learning about Ethiopian wildlife, dreaming of discovering new ways to protect nature!</p>
-                    <h3 class="student-name">Lidya</h3>
-                    <p class="student-rank">1st - Top in Science</p>
                 </div>
-                <div class="student-card">
-                    <div class="top-3-badge">2</div>
-                    <div class="student-img-container">
-                        <img src="images/k.jpg" alt="Samuel sketching architectural designs" class="student-img" loading="lazy" width="280" height="200">
+                <div class="grade-section">
+                    <h3>Grade 8 Top Performers</h3>
+                    <div class="rank-group">
+                        <!-- Student cards will be dynamically populated -->
                     </div>
-                    <p class="description">Samuel puts in amazing effort, improving every day. He's passionate about art and history, often sketching Ethiopian landmarks. He plays basketball and aims to be an architect, designing buildings that honor his culture!</p>
-                    <h3 class="student-name">Samuel</h3>
-                    <p class="student-rank">2nd - Best Effort</p>
-                </div>
-                <div class="student-card">
-                    <div class="top-3-badge">3</div>
-                    <div class="student-img-container">
-                        <img src="images/k.jpg" alt="Helen solving math problems" class="student-img" loading="lazy" width="280" height="200">
-                    </div>
-                    <p class="description">Helen excels in math, tackling equations with confidence. She loves puzzles and dreams of being a mathematician. She plays volleyball and studies Ethiopian numbers, hoping to solve big problems for her community!</p>
-                    <h3 class="student-name">Helen</h3>
-                    <p class="student-rank">3rd - Top in Math</p>
-                </div>
-                <div class="rank-nav">
-                    <button onclick="showRank('grade8-4-10')" aria-label="Show more Grade 8 students">View All Students</button>
-                </div>
-            </div>
-            <!-- Ranks 4-10 -->
-            <div id="grade8-4-10" class="rank-group">
-                <div class="student-card">
-                    <div class="student-img-container">
-                        <img src="images/k.jpg" alt="Bereket writing a story in English" class="student-img" loading="lazy" width="280" height="200">
-                    </div>
-                    <p class="description">Bereket shines in English, writing creative stories. He enjoys drama and wants to be a playwright. He plays soccer and learns about Ethiopian literature, aiming to share tales that inspire audiences worldwide!</p>
-                    <h3 class="student-name">Bereket</h3>
-                    <p class="student-rank">4th - Top in English</p>
-                </div>
-                <div class="student-card">
-                    <div class="student-img-container">
-                        <img src="images/k.jpg" alt="Tigist examining historical artifacts" class="student-img" loading="lazy" width="280" height="200">
-                    </div>
-                    <p class="description">Tigist is great at history, loving Ethiopia's rich past. She dreams of being an archaeologist and enjoys drawing artifacts. She plays netball and studies ancient sites, hoping to uncover hidden treasures!</p>
-                    <h3 class="student-name">Tigist</h3>
-                    <p class="student-rank">5th - Top in History</p>
-                </div>
-                <div class="student-card">
-                    <div class="student-img-container">
-                        <img src="images/k.jpg" alt="Abebe pointing at a geographical map" class="student-img" loading="lazy" width="280" height="200">
-                    </div>
-                    <p class="description">Abebe excels in geography, mapping the world. He loves hiking and aims to be a geographer. He plays traditional games and studies Ethiopian land, dreaming of teaching others about its beauty!</p>
-                    <h3 class="student-name">Abebe</h3>
-                    <p class="student-rank">6th - Top in Geography</p>
-                </div>
-                <div class="student-card">
-                    <div class="student-img-container">
-                        <img src="images/k.jpg" alt="Ruth writing in Amharic" class="student-img" loading="lazy" width="280" height="200">
-                    </div>
-                    <p class="description">Ruth is a star in Amharic, crafting beautiful prose. She enjoys poetry and wants to be a teacher. She plays tag and learns traditional songs, hoping to pass down Ethiopia's language to others!</p>
-                    <h3 class="student-name">Ruth</h3>
-                    <p class="student-rank">7th - Top in Amharic</p>
-                </div>
-                <div class="student-card">
-                    <div class="student-img-container">
-                        <img src="images/k.jpg" alt="Mikiyas playing basketball" class="student-img" loading="lazy" width="280" height="200">
-                    </div>
-                    <p class="description">Mikiyas works hard, always pushing forward. He loves sports and dreams of being a coach. He plays basketball and studies teamwork, aiming to lead his peers with strength and positivity!</p>
-                    <h3 class="student-name">Mikiyas</h3>
-                    <p class="student-rank">8th - Best Effort</p>
-                </div>
-                <div class="student-card">
-                    <div class="student-img-container">
-                        <img src="images/k.jpg" alt="Selamawit painting a colorful artwork" class="student-img" loading="lazy" width="280" height="200">
-                    </div>
-                    <p class="description">Selamawit excels in art, painting vibrant scenes. She enjoys music and wants to be an artist. She plays dance games and studies Ethiopian designs, dreaming of showcasing her culture globally!</p>
-                    <h3 class="student-name">Selamawit</h3>
-                    <p class="student-rank">9th - Creative Star</p>
-                </div>
-                <div class="student-card">
-                    <div class="student-img-container">
-                        <img src="images/k.jpg" alt="Natnael participating in a debate" class="student-img" loading="lazy" width="280" height="200">
-                    </div>
-                    <p class="description">Natnael shines in social studies, understanding society. He loves debates and aims to be a lawyer. He plays football and studies Ethiopian unity, hoping to fight for justice in his community!</p>
-                    <h3 class="student-name">Natnael</h3>
-                    <p class="student-rank">10th - Top in Social Studies</p>
-                </div>
-                <div class="rank-nav">
-                    <button onclick="showRank('grade8-top3')" aria-label="Show top 3 Grade 8 students">Back to Top 3</button>
                 </div>
             </div>
         </section>
-        
-        <!-- News Section -->
-        <section id="news" aria-labelledby="news-heading">
-            <h2 id="news-heading" class="section-title">School News & Events</h2>
-            <div id="news-items">
-                <div class="news-item">
-                    <h3>Annual Science Fair 2025</h3>
-                    <span class="news-date">April 15, 2025</span>
-                    <p>Join us for an exciting day of experiments and discoveries at our Annual Science Fair. Students will showcase innovative projects in biology, chemistry, and physics. The event will feature special guest judges from Addis Ababa University's Science Department.</p>
+
+        <section class="section" id="gallery">
+            <div class="container">
+                <div class="section-title">
+                    <h2>School Gallery</h2>
+                    <p>Capturing moments of learning and growth</p>
                 </div>
-                <div class="news-item">
-                    <h3>Graduation Ceremony</h3>
-                    <span class="news-date">June 20, 2025</span>
-                    <p>Celebrating our Grade 8 stars as they complete their primary education journey. The ceremony will take place in the school courtyard at 10:00 AM, followed by a cultural performance and lunch reception. All parents and community members are welcome.</p>
-                </div>
-                <div class="news-item">
-                    <h3>Parent-Teacher Meetings</h3>
-                    <span class="news-date">May 5-7, 2025</span>
-                    <p>Schedule your appointment to discuss your child's progress and achievements. Meetings will be held from 2:00 PM to 5:00 PM each day. Please sign up at the school office or contact your child's homeroom teacher to reserve your time slot.</p>
+                <div class="gallery">
+                    <!-- Gallery items will be dynamically populated -->
                 </div>
             </div>
         </section>
-        
-        <!-- Contact Section -->
-        <section id="contact" aria-labelledby="contact-heading">
-            <h2 id="contact-heading" class="section-title">Contact Us</h2>
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h3>School Information</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> Kafa Catholic Martyrs Memorial Primary School, Kafa, Ethiopia</p>
-                    <p><i class="fas fa-phone"></i> <strong>Phone:</strong> +251 XX XXX XXXX</p>
-                    <p><i class="fas fa-envelope"></i> <strong>Email:</strong> info@kafacatholic.edu.et</p>
-                    <p><i class="fas fa-clock"></i> <strong>Hours:</strong> Monday-Friday, 8:00 AM - 4:00 PM</p>
-                    <p><i class="fas fa-bus"></i> <strong>Transport:</strong> School bus service available in surrounding areas</p>
-                    
-                    <h3 style="margin-top: 2rem;">Our Mission</h3>
-                    <p><i class="fas fa-star"></i> To provide quality Catholic education that develops the whole person - spiritually, intellectually, physically, and socially.</p>
-                    <p><i class="fas fa-star"></i> To nurture ethical leaders who will serve their communities with compassion and integrity.</p>
+
+        <section class="section" id="news">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Latest News</h2>
+                    <p>Stay updated with school events and achievements</p>
+                </div>
+                <div class="news-grid">
+                    <!-- News cards will be dynamically populated -->
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="contact">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Contact Us</h2>
+                    <p>Get in touch with us</p>
                 </div>
                 <div class="contact-form">
-                    <h3>Send Us a Message</h3>
-                    <form id="contactForm" action="https://formspree.io/f/your-form-id" method="POST">
+                    <form id="contactForm">
                         <div class="form-group">
-                            <input type="text" name="name" placeholder="Your Name" required aria-label="Your Name" minlength="2">
-                            <div class="error-message" id="name-error"></div>
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
                         </div>
-                        
                         <div class="form-group">
-                            <input type="email" name="email" placeholder="Your Email" required aria-label="Your Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
-                            <div class="error-message" id="email-error"></div>
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
                         </div>
-                        
-                        <input type="text" name="subject" placeholder="Subject" aria-label="Subject">
-                        
                         <div class="form-group">
-                            <textarea name="message" placeholder="Your Message" required aria-label="Your Message" minlength="10"></textarea>
-                            <div class="error-message" id="message-error"></div>
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
                         </div>
-                        
-                        <button type="submit" id="submit-btn">Send Message</button>
+                        <button type="submit" class="submit-btn">Send Message</button>
                     </form>
                 </div>
             </div>
