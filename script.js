@@ -92,347 +92,216 @@ const galleryItems = [
     }
 ];
 
-// Function to populate student cards
-function populateStudentCards() {
-    const grade6Container = document.querySelector('#students .grade-section:first-child .rank-group');
-    const grade8Container = document.querySelector('#students .grade-section:last-child .rank-group');
+// DOM Elements
+const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+const navLinks = document.querySelector('.nav-links');
+const skipLink = document.querySelector('.skip-link');
+const mainContent = document.querySelector('main');
+const contactForm = document.querySelector('.contact-form');
+const gradeTabs = document.querySelectorAll('.tab-btn');
+const studentCards = document.querySelectorAll('.student-card');
 
-    students.grade6.forEach((student, index) => {
-        const card = createStudentCard(student, index + 1);
-        grade6Container.appendChild(card);
-    });
+// Mobile Menu Toggle
+mobileMenuBtn.addEventListener('click', () => {
+    mobileMenuBtn.classList.toggle('active');
+    navLinks.classList.toggle('active');
+    document.body.classList.toggle('menu-open');
+});
 
-    students.grade8.forEach((student, index) => {
-        const card = createStudentCard(student, index + 1);
-        grade8Container.appendChild(card);
-    });
-}
-
-// Function to create a student card
-function createStudentCard(student, rank) {
-    const card = document.createElement('div');
-    card.className = 'student-card';
-    
-    if (rank <= 3) {
-        const badge = document.createElement('div');
-        badge.className = 'top-3-badge';
-        badge.textContent = rank;
-        card.appendChild(badge);
+// Close mobile menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.nav-links') && !e.target.closest('.mobile-menu-btn')) {
+        mobileMenuBtn.classList.remove('active');
+        navLinks.classList.remove('active');
+        document.body.classList.remove('menu-open');
     }
+});
 
-    card.innerHTML += `
-        <div class="student-img-container">
-            <img src="${student.image}" alt="${student.name}" class="student-img" loading="lazy">
-        </div>
-        <h3 class="student-name">${student.name}</h3>
-        <p class="student-rank">${student.rank}</p>
-        <p class="description">${student.description}</p>
-    `;
+// Skip Link Functionality
+skipLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    mainContent.focus();
+    mainContent.scrollIntoView({ behavior: 'smooth' });
+});
 
-    return card;
-}
-
-// Function to populate news section
-function populateNews() {
-    const newsContainer = document.querySelector('.news-grid');
-    
-    newsItems.forEach(news => {
-        const card = document.createElement('div');
-        card.className = 'news-card';
-        card.innerHTML = `
-            <img src="${news.image}" alt="${news.title}" class="news-image">
-            <div class="news-content">
-                <h3>${news.title}</h3>
-                <span class="news-date">${news.date}</span>
-                <p>${news.description}</p>
-            </div>
-        `;
-        newsContainer.appendChild(card);
+// Smooth Scroll for Navigation Links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+            // Close mobile menu after clicking a link
+            mobileMenuBtn.classList.remove('active');
+            navLinks.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        }
     });
-}
+});
 
-// Function to populate gallery
-function populateGallery() {
-    const galleryContainer = document.querySelector('.gallery');
+// Form Validation and Submission
+if (contactForm) {
+    const formInputs = contactForm.querySelectorAll('input, textarea');
     
-    galleryItems.forEach(item => {
-        const galleryItem = document.createElement('div');
-        galleryItem.className = 'gallery-item';
-        galleryItem.innerHTML = `
-            <img src="${item.image}" alt="${item.caption}">
-            <div class="gallery-caption">${item.caption}</div>
-        `;
-        galleryContainer.appendChild(galleryItem);
-    });
-}
-
-// Function to handle form submission
-function handleFormSubmit(event) {
-    event.preventDefault();
-    const form = event.target;
-    const formData = new FormData(form);
-    
-    // Here you would typically send the form data to a server
-    console.log('Form submitted:', Object.fromEntries(formData));
-    
-    // Show success message
-    alert('Thank you for your message! We will get back to you soon.');
-    form.reset();
-}
-
-// Button functionality checks
-function setupButtonListeners() {
-    // Program buttons
-    document.querySelectorAll('.program-card .btn').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const programName = this.closest('.program-card').querySelector('h3').textContent;
-            showNotification(`Exploring ${programName}`, 'success');
+    // Real-time validation
+    formInputs.forEach(input => {
+        input.addEventListener('input', () => {
+            validateInput(input);
+        });
+        
+        input.addEventListener('blur', () => {
+            validateInput(input);
         });
     });
-
-    // Facility buttons
-    document.querySelectorAll('.facility-card .btn').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const facilityName = this.closest('.facility-card').querySelector('h3').textContent;
-            showNotification(`Viewing details for ${facilityName}`, 'success');
-        });
-    });
-
-    // CTA buttons
-    document.querySelectorAll('.cta-buttons .btn').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const action = this.textContent.trim();
-            if (action === 'Apply Now') {
-                window.location.href = '#contact';
-            } else if (action === 'Schedule a Visit') {
-                showNotification('Please fill out the contact form to schedule your visit', 'info');
-                setTimeout(() => window.location.href = '#contact', 1500);
-            }
-        });
-    });
-}
-
-// Enhanced form validation and submission
-function setupFormValidation() {
-    const form = document.getElementById('contactForm');
-    if (!form) return;
-
-    const inputs = form.querySelectorAll('input, textarea');
     
-    inputs.forEach(input => {
-        // Real-time validation
-        input.addEventListener('input', function() {
-            validateInput(this);
-        });
-
-        // Blur validation
-        input.addEventListener('blur', function() {
-            validateInput(this);
-        });
-    });
-
-    form.addEventListener('submit', async function(e) {
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        // Validate all fields
         let isValid = true;
-        inputs.forEach(input => {
+        formInputs.forEach(input => {
             if (!validateInput(input)) {
                 isValid = false;
             }
         });
-
-        if (!isValid) {
-            showNotification('Please fill out all required fields correctly', 'error');
-            return;
-        }
-
-        // Show loading state
-        const submitBtn = form.querySelector('button[type="submit"]');
-        submitBtn.classList.add('loading');
-        submitBtn.disabled = true;
-
-        try {
-            // Simulate form submission (replace with actual API call)
-            await new Promise(resolve => setTimeout(resolve, 1500));
+        
+        if (isValid) {
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
             
-            showNotification('Thank you! Your message has been sent successfully', 'success');
-            form.reset();
-        } catch (error) {
-            showNotification('An error occurred. Please try again later', 'error');
-        } finally {
-            submitBtn.classList.remove('loading');
-            submitBtn.disabled = false;
+            try {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+                
+                // Simulate form submission
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                showNotification('Message sent successfully!', 'success');
+                contactForm.reset();
+            } catch (error) {
+                showNotification('Error sending message. Please try again.', 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
         }
     });
 }
 
-// Input validation helper
+// Input Validation Helper
 function validateInput(input) {
-    const value = input.value.trim();
+    const errorElement = input.parentElement.querySelector('.error-message');
     let isValid = true;
     let errorMessage = '';
-
-    if (input.required && !value) {
+    
+    if (input.required && !input.value.trim()) {
         isValid = false;
         errorMessage = 'This field is required';
-    } else if (input.type === 'email' && value) {
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailPattern.test(value)) {
+    } else if (input.type === 'email' && input.value) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(input.value)) {
             isValid = false;
             errorMessage = 'Please enter a valid email address';
         }
     }
-
-    // Show/hide error message
-    const errorElement = input.parentElement.querySelector('.error-message');
+    
     if (errorElement) {
         errorElement.textContent = errorMessage;
+        input.classList.toggle('error', !isValid);
     }
-
-    // Update input styling
-    input.classList.toggle('invalid', !isValid);
     
     return isValid;
 }
 
-// Enhanced notification system
+// Notification System
 function showNotification(message, type = 'info') {
-    const notification = document.getElementById('notification');
-    if (!notification) return;
-
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
     notification.textContent = message;
-    notification.className = `notification show ${type}`;
     
-    // Automatically hide after 5 seconds
+    document.body.appendChild(notification);
+    
+    // Trigger reflow
+    notification.offsetHeight;
+    
+    notification.classList.add('show');
+    
     setTimeout(() => {
         notification.classList.remove('show');
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
     }, 5000);
 }
 
-// Mobile menu enhancements
-function setupMobileMenu() {
-    const menuBtn = document.querySelector('.mobile-menu-btn');
-    const navLinks = document.querySelector('.nav-links');
-    
-    if (!menuBtn || !navLinks) return;
-
-    menuBtn.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        menuBtn.setAttribute('aria-expanded', 
-            menuBtn.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'
-        );
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!menuBtn.contains(e.target) && !navLinks.contains(e.target)) {
-            navLinks.classList.remove('active');
-            menuBtn.setAttribute('aria-expanded', 'false');
-        }
-    });
-
-    // Close menu when clicking a link
-    navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            menuBtn.setAttribute('aria-expanded', 'false');
+// Grade Tabs Functionality
+if (gradeTabs.length > 0) {
+    gradeTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Remove active class from all tabs
+            gradeTabs.forEach(t => t.classList.remove('active'));
+            
+            // Add active class to clicked tab
+            tab.classList.add('active');
+            
+            // Filter student cards based on grade
+            const grade = tab.dataset.grade;
+            studentCards.forEach(card => {
+                if (grade === 'all' || card.dataset.grade === grade) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
         });
     });
 }
 
-// Initialize everything when the DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    populateStudentCards();
-    populateNews();
-    populateGallery();
-    setupButtonListeners();
-    setupFormValidation();
-    setupMobileMenu();
-
-    // Add loading="lazy" to all images
-    document.querySelectorAll('img').forEach(img => {
-        if (!img.hasAttribute('loading')) {
-            img.setAttribute('loading', 'lazy');
+// Intersection Observer for Animations
+const animateOnScroll = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
         }
     });
+}, {
+    threshold: 0.1
+});
 
-    // Add scroll event listener for navbar
-    window.addEventListener('scroll', () => {
-        const nav = document.querySelector('.nav');
-        if (window.scrollY > 100) {
-            nav.classList.add('scrolled');
-        } else {
-            nav.classList.remove('scrolled');
+// Add animation classes to elements
+document.querySelectorAll('.program-card, .facility-card, .student-card, .news-card').forEach(element => {
+    animateOnScroll.observe(element);
+});
+
+// Lazy Loading Images
+const lazyImages = document.querySelectorAll('img[data-src]');
+const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src;
+            img.removeAttribute('data-src');
+            observer.unobserve(img);
+        }
+    });
+});
+
+lazyImages.forEach(img => imageObserver.observe(img));
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+    // Add active class to current navigation item
+    const currentPath = window.location.pathname;
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+            link.classList.add('active');
         }
     });
     
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-
-    // Program card hover effects
-    const programCards = document.querySelectorAll('.program-card');
-    programCards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            card.style.transform = 'translateY(-10px)';
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'translateY(0)';
-        });
-    });
-
-    // Facility image loading and hover effects
-    const facilityImages = document.querySelectorAll('.facility-image');
-    facilityImages.forEach(img => {
-        // Add loading animation
-        img.style.opacity = '0';
-        img.addEventListener('load', () => {
-            img.style.opacity = '1';
-            img.style.transition = 'opacity 0.5s ease-in';
-        });
-    });
-
-    // Intersection Observer for fade-in animations
-    const observerOptions = {
-        threshold: 0.2,
-        rootMargin: '0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    // Observe all sections for fade-in animation
-    document.querySelectorAll('section').forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(20px)';
-        section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-        observer.observe(section);
-    });
-
-    // Add fade-in class for animation
-    document.querySelectorAll('.fade-in').forEach(element => {
-        element.style.opacity = '1';
-        element.style.transform = 'translateY(0)';
-    });
+    // Initialize first grade tab
+    if (gradeTabs.length > 0) {
+        gradeTabs[0].click();
+    }
 }); 
