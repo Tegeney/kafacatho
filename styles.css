@@ -59,6 +59,8 @@ html {
 
 .header-top {
     padding: 0.5rem 0;
+    background: var(--primary-green);
+    color: white;
 }
 
 .header-top .container {
@@ -207,6 +209,9 @@ html {
     justify-content: center;
     text-align: center;
     padding: 2rem var(--container-padding);
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url('images/k.jpg') center/cover;
+    color: white;
 }
 
 .hero-content {
@@ -217,11 +222,13 @@ html {
 .hero h1 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
+    color: white;
 }
 
 .hero p {
     font-size: 1.2rem;
     margin-bottom: 2rem;
+    color: var(--text-light);
 }
 
 .hero-buttons {
@@ -284,6 +291,7 @@ html {
 
 .about-content p {
     margin-bottom: 2rem;
+    color: var(--text-dark);
 }
 
 .stats-grid {
@@ -363,10 +371,12 @@ html {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    border: 1px solid rgba(0, 146, 63, 0.1);
 }
 
 .program-card:hover {
     transform: translateY(-10px);
+    border-color: var(--primary-green);
 }
 
 .program-icon {
@@ -439,10 +449,12 @@ html {
     transition: var(--transition);
     display: flex;
     flex-direction: column;
+    border: 1px solid rgba(0, 146, 63, 0.1);
 }
 
 .facility-card:hover {
     transform: translateY(-10px);
+    border-color: var(--primary-green);
 }
 
 .facility-image {
@@ -507,7 +519,7 @@ html {
 
 .tab-btn {
     padding: 0.8rem 1.5rem;
-    border: none;
+    border: 1px solid rgba(0, 146, 63, 0.1);
     background: white;
     color: var(--text-dark);
     border-radius: 5px;
@@ -541,10 +553,12 @@ html {
     position: relative;
     display: flex;
     flex-direction: column;
+    border: 1px solid rgba(0, 146, 63, 0.1);
 }
 
 .student-card:hover {
     transform: translateY(-10px);
+    border-color: var(--primary-green);
 }
 
 .student-img-container {
@@ -606,10 +620,12 @@ html {
     transition: var(--transition);
     display: flex;
     flex-direction: column;
+    border: 1px solid rgba(0, 146, 63, 0.1);
 }
 
 .news-card:hover {
     transform: translateY(-10px);
+    border-color: var(--primary-green);
 }
 
 .news-image {
@@ -657,6 +673,7 @@ html {
     padding: 2rem;
     border-radius: 10px;
     box-shadow: var(--shadow);
+    border: 1px solid rgba(0, 146, 63, 0.1);
 }
 
 .info-item {
@@ -685,6 +702,7 @@ html {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    border: 1px solid rgba(0, 146, 63, 0.1);
 }
 
 .form-group {
@@ -711,7 +729,7 @@ html {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--primary-green);
-    box-shadow: 0 0 0 2px rgba(0,146,63,0.1);
+    box-shadow: 0 0 0 2px rgba(0, 146, 63, 0.1);
 }
 
 .error-message {
@@ -741,11 +759,13 @@ html {
 .cta-content h2 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
+    color: white;
 }
 
 .cta-content p {
     font-size: 1.2rem;
     margin-bottom: 2rem;
+    color: var(--text-light);
 }
 
 .cta-buttons {
@@ -775,6 +795,7 @@ html {
 
 .footer-info p {
     margin: 1rem 0;
+    color: var(--text-light);
 }
 
 .footer-logo {
@@ -799,7 +820,7 @@ html {
 }
 
 .footer-links a {
-    color: white;
+    color: var(--text-light);
     text-decoration: none;
     transition: var(--transition);
 }
@@ -827,6 +848,7 @@ html {
 
 .footer-bottom p {
     margin-bottom: 0.5rem;
+    color: var(--text-light);
 }
 
 .footer-bottom a {
@@ -994,4 +1016,15 @@ img {
         max-width: 100%;
         padding: 0;
     }
+}
+
+/* Skip Link */
+.skip-link {
+    background: var(--primary-green);
+    color: white;
+}
+
+.skip-link:focus {
+    background: var(--primary-yellow);
+    color: var(--text-dark);
 }
