@@ -1,3 +1,45 @@
+// Color Switcher Functionality
+const styleSwitcherToggler = document.querySelector('.style-switcher-toggler');
+const styleSwitcher = document.querySelector('.style-switcher');
+const colorItems = document.querySelectorAll('.color-item');
+
+// Toggle style switcher
+styleSwitcherToggler.addEventListener('click', () => {
+    styleSwitcher.classList.toggle('open');
+});
+
+// Hide style switcher on scroll
+window.addEventListener('scroll', () => {
+    if(styleSwitcher.classList.contains('open')) {
+        styleSwitcher.classList.remove('open');
+    }
+});
+
+// Theme Colors
+function setActiveColorItem() {
+    colorItems.forEach(item => {
+        item.classList.remove('active');
+        if(item.dataset.theme === document.body.dataset.theme) {
+            item.classList.add('active');
+        }
+    });
+}
+
+// Set initial theme
+const savedTheme = localStorage.getItem('theme') || 'default';
+document.body.dataset.theme = savedTheme;
+setActiveColorItem();
+
+// Theme color change
+colorItems.forEach(item => {
+    item.addEventListener('click', () => {
+        const theme = item.dataset.theme;
+        document.body.dataset.theme = theme;
+        localStorage.setItem('theme', theme);
+        setActiveColorItem();
+    });
+});
+
 // Sample data for students
 const students = {
     grade6: [
@@ -460,4 +502,70 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add passive event listeners for better scroll performance
     window.addEventListener('scroll', () => {}, { passive: true });
     window.addEventListener('touchmove', () => {}, { passive: true });
+
+    // Add fade-in class to important elements
+    const fadeElements = document.querySelectorAll('.hero, .features, .welcome, .top-students, .school-building, .learning-stories');
+    fadeElements.forEach(element => {
+        element.classList.add('fade-in');
+    });
+
+    // Create an array of promises for all images to load
+    const imagePromises = Array.from(document.images).map(img => {
+        if (img.complete) {
+            return Promise.resolve();
+        } else {
+            return new Promise(resolve => {
+                img.addEventListener('load', resolve);
+                img.addEventListener('error', resolve); // Handle error cases as well
+            });
+        }
+    });
+
+    // Wait for all images to load
+    Promise.all(imagePromises)
+        .then(() => {
+            // Remove loader
+            const loader = document.querySelector('.loader-wrapper');
+            loader.classList.add('fade-out');
+            
+            // Show body content
+            document.body.classList.add('loaded');
+
+            // Add visible class to fade-in elements with delay
+            setTimeout(() => {
+                fadeElements.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.classList.add('visible');
+                    }, index * 200); // Stagger the animations
+                });
+            }, 500);
+
+            // Remove loader from DOM after animation
+            setTimeout(() => {
+                loader.remove();
+            }, 1000);
+        });
+});
+
+// Intersection Observer for fade-in elements
+const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+};
+
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target); // Stop observing once visible
+        }
+    });
+}, observerOptions);
+
+// Observe all fade-in elements
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.fade-in').forEach(element => {
+        observer.observe(element);
+    });
 }); 
