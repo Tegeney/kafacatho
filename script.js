@@ -102,56 +102,89 @@ const gradeTabs = document.querySelectorAll('.tab-btn');
 const studentCards = document.querySelectorAll('.student-card');
 const header = document.querySelector('.main-header');
 
-// Mobile Menu Toggle
+// Mobile Menu Toggle with Touch Support
 if (mobileMenuBtn) {
     mobileMenuBtn.addEventListener('click', () => {
         mobileMenuBtn.classList.toggle('active');
         navLinks.classList.toggle('active');
         document.body.classList.toggle('menu-open');
+        
+        // Update ARIA attributes
+        const isExpanded = mobileMenuBtn.classList.contains('active');
+        mobileMenuBtn.setAttribute('aria-expanded', isExpanded);
+    });
+    
+    // Add touch event for better mobile experience
+    mobileMenuBtn.addEventListener('touchstart', (e) => {
+        e.preventDefault(); // Prevent double-tap zoom on mobile
     });
 }
 
-// Close mobile menu when clicking outside
+// Close mobile menu when clicking outside or on a link
 document.addEventListener('click', (e) => {
     if (mobileMenuBtn && navLinks) {
         if (!e.target.closest('.nav-links') && !e.target.closest('.mobile-menu-btn')) {
             mobileMenuBtn.classList.remove('active');
             navLinks.classList.remove('active');
             document.body.classList.remove('menu-open');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
         }
     }
 });
 
-// Skip Link Functionality
+// Close mobile menu when clicking a link
+if (navLinks) {
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenuBtn.classList.remove('active');
+            navLinks.classList.remove('active');
+            document.body.classList.remove('menu-open');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        });
+    });
+}
+
+// Skip Link Functionality with Focus Management
 if (skipLink && mainContent) {
     skipLink.addEventListener('click', (e) => {
         e.preventDefault();
         mainContent.focus();
         mainContent.scrollIntoView({ behavior: 'smooth' });
+        
+        // Add focus styles temporarily
+        mainContent.classList.add('focus-visible');
+        setTimeout(() => {
+            mainContent.classList.remove('focus-visible');
+        }, 2000);
     });
 }
 
-// Smooth Scroll for Navigation Links
+// Smooth Scroll with Offset for Fixed Header
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+            const headerHeight = header ? header.offsetHeight : 0;
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+            
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
             });
+            
             // Close mobile menu after clicking a link
             if (mobileMenuBtn && navLinks) {
                 mobileMenuBtn.classList.remove('active');
                 navLinks.classList.remove('active');
                 document.body.classList.remove('menu-open');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
             }
         }
     });
 });
 
-// Form Validation and Submission
+// Form Validation and Submission with Mobile Keyboard Support
 if (contactForm) {
     const formInputs = contactForm.querySelectorAll('input, textarea');
     
@@ -164,6 +197,11 @@ if (contactForm) {
         input.addEventListener('blur', () => {
             validateInput(input);
         });
+        
+        // Prevent zoom on focus for iOS
+        if (input.type === 'text' || input.type === 'email' || input.type === 'tel') {
+            input.style.fontSize = '16px';
+        }
     });
     
     contactForm.addEventListener('submit', async (e) => {
@@ -189,6 +227,11 @@ if (contactForm) {
                 
                 showNotification('Message sent successfully!', 'success');
                 contactForm.reset();
+                
+                // Scroll to top of form on mobile
+                if (window.innerWidth < 768) {
+                    contactForm.scrollIntoView({ behavior: 'smooth' });
+                }
             } catch (error) {
                 showNotification('Error sending message. Please try again.', 'error');
             } finally {
@@ -199,7 +242,7 @@ if (contactForm) {
     });
 }
 
-// Input Validation Helper
+// Input Validation Helper with Mobile-Friendly Messages
 function validateInput(input) {
     const errorElement = input.parentElement.querySelector('.error-message');
     let isValid = true;
@@ -214,21 +257,47 @@ function validateInput(input) {
             isValid = false;
             errorMessage = 'Please enter a valid email address';
         }
+    } else if (input.type === 'tel' && input.value) {
+        const phoneRegex = /^[0-9+\-\s()]{10,}$/;
+        if (!phoneRegex.test(input.value)) {
+            isValid = false;
+            errorMessage = 'Please enter a valid phone number';
+        }
     }
     
     if (errorElement) {
         errorElement.textContent = errorMessage;
         input.classList.toggle('error', !isValid);
+        
+        // Announce error to screen readers
+        if (!isValid) {
+            const announcement = document.createElement('div');
+            announcement.setAttribute('aria-live', 'polite');
+            announcement.setAttribute('aria-atomic', 'true');
+            announcement.textContent = errorMessage;
+            document.body.appendChild(announcement);
+            setTimeout(() => announcement.remove(), 1000);
+        }
     }
     
     return isValid;
 }
 
-// Notification System
+// Notification System with Mobile Positioning
 function showNotification(message, type = 'info') {
     const notification = document.createElement('div');
     notification.className = `notification ${type}`;
     notification.textContent = message;
+    
+    // Position notification based on screen size
+    if (window.innerWidth < 768) {
+        notification.style.bottom = '20px';
+        notification.style.left = '50%';
+        notification.style.transform = 'translateX(-50%)';
+    } else {
+        notification.style.top = '20px';
+        notification.style.right = '20px';
+    }
     
     document.body.appendChild(notification);
     
@@ -236,6 +305,14 @@ function showNotification(message, type = 'info') {
     notification.offsetHeight;
     
     notification.classList.add('show');
+    
+    // Add touch event for mobile dismissal
+    notification.addEventListener('touchstart', () => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
+    });
     
     setTimeout(() => {
         notification.classList.remove('show');
@@ -245,7 +322,7 @@ function showNotification(message, type = 'info') {
     }, 5000);
 }
 
-// Grade Tabs Functionality
+// Grade Tabs Functionality with Touch Support
 if (gradeTabs.length > 0) {
     gradeTabs.forEach(tab => {
         tab.addEventListener('click', () => {
@@ -265,18 +342,29 @@ if (gradeTabs.length > 0) {
                 }
             });
         });
+        
+        // Add touch event for better mobile experience
+        tab.addEventListener('touchstart', (e) => {
+            e.preventDefault(); // Prevent double-tap zoom
+        });
     });
 }
 
-// Intersection Observer for Animations
+// Intersection Observer for Animations with Mobile Optimization
 const animateOnScroll = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('animate');
+            
+            // Optimize for mobile by reducing animation complexity
+            if (window.innerWidth < 768) {
+                entry.target.style.transition = 'opacity 0.5s ease';
+            }
         }
     });
 }, {
-    threshold: 0.1
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px' // Adjust for mobile viewport
 });
 
 // Add animation classes to elements
@@ -284,24 +372,43 @@ document.querySelectorAll('.program-card, .facility-card, .student-card, .news-c
     animateOnScroll.observe(element);
 });
 
-// Lazy Loading Images
+// Lazy Loading Images with Mobile Optimization
 const lazyImages = document.querySelectorAll('img[data-src]');
 const imageObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             const img = entry.target;
+            
+            // Add loading animation
+            img.style.opacity = '0';
+            
+            // Load image
             img.src = img.dataset.src;
             img.removeAttribute('data-src');
+            
+            // Fade in image when loaded
+            img.onload = () => {
+                img.style.opacity = '1';
+                img.style.transition = 'opacity 0.5s ease';
+            };
+            
             observer.unobserve(img);
         }
     });
+}, {
+    rootMargin: '50px 0px' // Load images slightly before they come into view
 });
 
 lazyImages.forEach(img => imageObserver.observe(img));
 
-// Header Scroll Effect
+// Header Scroll Effect with Mobile Optimization
 let lastScroll = 0;
+let scrollTimeout;
+
 window.addEventListener('scroll', () => {
+    // Clear previous timeout
+    clearTimeout(scrollTimeout);
+    
     const currentScroll = window.pageYOffset;
     
     if (currentScroll <= 0) {
@@ -318,7 +425,13 @@ window.addEventListener('scroll', () => {
         header.classList.remove('scroll-down');
         header.classList.add('scroll-up');
     }
+    
     lastScroll = currentScroll;
+    
+    // Add a class after scrolling stops (for mobile)
+    scrollTimeout = setTimeout(() => {
+        header.classList.add('scroll-end');
+    }, 150);
 });
 
 // Initialize
@@ -340,4 +453,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('img:not([loading])').forEach(img => {
         img.setAttribute('loading', 'lazy');
     });
+    
+    // Add touch-action to improve scrolling on mobile
+    document.body.style.touchAction = 'manipulation';
+    
+    // Add passive event listeners for better scroll performance
+    window.addEventListener('scroll', () => {}, { passive: true });
+    window.addEventListener('touchmove', () => {}, { passive: true });
 }); 
