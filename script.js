@@ -5,18 +5,40 @@ const students = {
             name: "Betelhem",
             rank: "1st - Top in Math",
             description: "Betelhem excels in mathematics, solving complex problems with ease. She loves tutoring peers and aspires to be an engineer.",
-            image: "images/students/betelhem.jpg"
+            image: "images/k.jpg"
         },
-        // Add more students here
+        {
+            name: "Dawit",
+            rank: "2nd - Highest Overall",
+            description: "Dawit shines in all subjects, always eager to learn more. He enjoys science experiments and dreams of becoming a doctor.",
+            image: "images/k.jpg"
+        },
+        {
+            name: "Meron",
+            rank: "3rd - Top in English",
+            description: "Meron is a star in English, writing amazing essays. She loves reading novels and wants to be a journalist.",
+            image: "images/k.jpg"
+        }
     ],
     grade8: [
         {
             name: "Lidya",
             rank: "1st - Top in Science",
             description: "Lidya is a science star, fascinated by biology and chemistry. She leads class projects and wants to be a researcher.",
-            image: "images/students/lidya.jpg"
+            image: "images/k.jpg"
         },
-        // Add more students here
+        {
+            name: "Samuel",
+            rank: "2nd - Best Effort",
+            description: "Samuel puts in amazing effort, improving every day. He's passionate about art and history, often sketching Ethiopian landmarks.",
+            image: "images/k.jpg"
+        },
+        {
+            name: "Helen",
+            rank: "3rd - Top in Math",
+            description: "Helen excels in math, tackling equations with confidence. She loves puzzles and dreams of being a mathematician.",
+            image: "images/k.jpg"
+        }
     ]
 };
 
@@ -25,38 +47,49 @@ const newsItems = [
     {
         title: "Annual Science Fair 2025",
         date: "April 15, 2025",
-        description: "Join us for an exciting day of experiments and discoveries at our Annual Science Fair.",
-        image: "images/news/science-fair.jpg"
+        description: "Join us for an exciting day of experiments and discoveries at our Annual Science Fair. Students will showcase innovative projects in biology, chemistry, and physics.",
+        image: "images/k.jpg"
     },
     {
         title: "Graduation Ceremony",
         date: "June 20, 2025",
-        description: "Celebrating our Grade 8 stars as they complete their primary education journey.",
-        image: "images/news/graduation.jpg"
+        description: "Celebrating our Grade 8 stars as they complete their primary education journey. Join us for this special occasion!",
+        image: "images/k.jpg"
     },
     {
         title: "Parent-Teacher Meetings",
         date: "May 5-7, 2025",
-        description: "Schedule your appointment to discuss your child's progress and achievements.",
-        image: "images/news/meeting.jpg"
+        description: "Schedule your appointment to discuss your child's progress and achievements. Your involvement makes a difference!",
+        image: "images/k.jpg"
     }
 ];
 
 // Sample data for gallery
 const galleryItems = [
     {
-        image: "images/gallery/classroom.jpg",
+        image: "images/k.jpg",
         caption: "Students in Science Class"
     },
     {
-        image: "images/gallery/sports.jpg",
+        image: "images/k.jpg",
         caption: "School Sports Day"
     },
     {
-        image: "images/gallery/library.jpg",
+        image: "images/k.jpg",
         caption: "School Library"
     },
-    // Add more gallery items here
+    {
+        image: "images/k.jpg",
+        caption: "Cultural Day Celebration"
+    },
+    {
+        image: "images/k.jpg",
+        caption: "Mathematics Competition"
+    },
+    {
+        image: "images/k.jpg",
+        caption: "Art Exhibition"
+    }
 ];
 
 // Function to populate student cards
