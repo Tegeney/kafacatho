@@ -1135,3 +1135,143 @@ img {
         font-size: 2rem;
     }
 }
+
+/* Top Students Section */
+.top-students {
+    padding: 4rem 0;
+    background: var(--background-light);
+}
+
+.top-students h2 {
+    text-align: center;
+    color: var(--primary-green);
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.grade-section {
+    margin-bottom: 4rem;
+}
+
+.grade-section h3 {
+    color: var(--primary-blue);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.students-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+@media (max-width: 768px) {
+    .students-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .students-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.student-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+}
+
+.student-card:hover {
+    transform: translateY(-5px);
+}
+
+.student-image {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+
+.student-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.student-card:hover .student-image img {
+    transform: scale(1.1);
+}
+
+.student-info {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.student-info h4 {
+    color: var(--primary-green);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.student-info .rank {
+    color: var(--primary-yellow);
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.student-info .score {
+    color: var(--text-dark);
+}
+
+/* School Building Section */
+.school-building {
+    padding: 4rem 0;
+    background: white;
+}
+
+.school-building h2 {
+    text-align: center;
+    color: var(--primary-green);
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.building-images {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+@media (max-width: 768px) {
+    .building-images {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .building-images {
+        grid-template-columns: 1fr;
+    }
+}
+
+.building-images img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+}
+
+.building-images img:hover {
+    transform: scale(1.05);
+}
