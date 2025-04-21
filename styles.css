@@ -1,11 +1,11 @@
 :root {
+    --primary-green: #009B3A;  /* Ethiopian Green */
+    --primary-yellow: #FEDD00; /* Ethiopian Yellow */
+    --primary-red: #EF3340;    /* Ethiopian Red */
     --primary-blue: #4A90E2;
-    --primary-red: #E74C3C;
-    --primary-yellow: #F1C40F;
-    --primary-green: #2ECC71;
     --text-dark: #2C3E50;
-    --text-light: #ECF0F1;
-    --background-light: #F9F9F9;
+    --text-light: #FFFFFF;
+    --background-light: #F5F5F5;
     --shadow: 0 2px 10px rgba(0,0,0,0.1);
     --transition: all 0.3s ease;
     --container-padding: 1rem;
@@ -19,7 +19,7 @@
 }
 
 body {
-    font-family: 'Comic Sans MS', 'Helvetica', sans-serif;
+    font-family: 'Poppins', sans-serif;
     line-height: 1.6;
     color: var(--text-dark);
     background-color: var(--background-light);
@@ -55,7 +55,7 @@ html {
     position: fixed;
     top: 0;
     z-index: 1000;
-    background: white;
+    background: var(--primary-green);
     box-shadow: var(--shadow);
     width: 100%;
 }
@@ -129,8 +129,8 @@ html {
 
 .nav-links a {
     text-decoration: none;
-    color: var(--text-dark);
-    font-weight: bold;
+    color: var(--text-light);
+    font-weight: 500;
     font-size: 1.1rem;
     transition: var(--transition);
     padding: 5px 10px;
@@ -139,7 +139,7 @@ html {
 
 .nav-links a:hover {
     background: var(--primary-yellow);
-    color: white;
+    color: var(--text-dark);
 }
 
 .mobile-menu-btn {
@@ -183,6 +183,9 @@ html {
     font-size: 2.5rem;
     color: var(--primary-green);
     margin-bottom: 1rem;
+    border-bottom: 3px solid var(--primary-yellow);
+    padding-bottom: 10px;
+    display: inline-block;
 }
 
 .section-header p {
@@ -478,7 +481,7 @@ html {
     position: relative;
     display: flex;
     flex-direction: column;
-    border: 1px solid rgba(0, 146, 63, 0.1);
+    border: 2px solid var(--primary-green);
 }
 
 .student-card:hover {
@@ -509,7 +512,7 @@ html {
 }
 
 .student-rank {
-    color: var(--primary-yellow);
+    color: var(--primary-red);
     font-weight: 600;
     margin: 0 1rem;
 }
@@ -701,8 +704,8 @@ html {
 
 /* Footer */
 .main-footer {
-    background: var(--text-dark);
-    color: white;
+    background: var(--primary-green);
+    color: var(--text-light);
     padding: 4rem 0 2rem;
 }
 
@@ -801,7 +804,8 @@ html {
 
 .btn-primary {
     background: var(--primary-green);
-    color: white;
+    color: var(--text-light);
+    border: 2px solid var(--primary-yellow);
 }
 
 .btn-primary:hover {
@@ -823,11 +827,12 @@ html {
 .btn-secondary {
     background: var(--primary-yellow);
     color: var(--text-dark);
+    border: 2px solid var(--primary-green);
 }
 
 .btn-secondary:hover {
     background: var(--primary-green);
-    color: white;
+    color: var(--text-light);
 }
 
 /* Animations */
@@ -878,14 +883,17 @@ html {
 
 .notification.success {
     background: var(--primary-green);
+    border: 2px solid var(--primary-yellow);
 }
 
 .notification.error {
     background: var(--primary-red);
+    border: 2px solid var(--primary-yellow);
 }
 
 .notification.info {
     background: var(--primary-yellow);
+    border: 2px solid var(--primary-green);
     color: var(--text-dark);
 }
 
@@ -974,10 +982,22 @@ img {
     transition: var(--transition);
 }
 
-.feature-card:nth-child(1) { background: var(--primary-yellow); }
-.feature-card:nth-child(2) { background: var(--primary-red); }
-.feature-card:nth-child(3) { background: var(--primary-blue); }
-.feature-card:nth-child(4) { background: var(--primary-green); }
+.feature-card:nth-child(1) { 
+    background: var(--primary-green);
+    border: 2px solid var(--primary-yellow);
+}
+.feature-card:nth-child(2) { 
+    background: var(--primary-yellow);
+    border: 2px solid var(--primary-red);
+}
+.feature-card:nth-child(3) { 
+    background: var(--primary-red);
+    border: 2px solid var(--primary-green);
+}
+.feature-card:nth-child(4) { 
+    background: var(--primary-green);
+    border: 2px solid var(--primary-yellow);
+}
 
 .feature-card h3 {
     color: white;
@@ -993,16 +1013,19 @@ img {
     display: inline-block;
     margin-top: 15px;
     padding: 5px 15px;
-    background: white;
+    background: var(--text-light);
+    color: var(--text-dark);
     border-radius: 20px;
     text-decoration: none;
-    color: var(--text-dark);
     font-size: 0.9rem;
     transition: var(--transition);
+    border: 2px solid transparent;
 }
 
 .feature-card .read-more:hover {
-    transform: scale(1.05);
+    background: transparent;
+    color: var(--text-light);
+    border-color: var(--text-light);
 }
 
 /* Welcome Section */
@@ -1012,9 +1035,12 @@ img {
 }
 
 .welcome h2 {
-    color: var(--primary-blue);
+    color: var(--primary-green);
     font-size: 2.5rem;
     margin-bottom: 20px;
+    border-bottom: 3px solid var(--primary-yellow);
+    padding-bottom: 10px;
+    display: inline-block;
 }
 
 .welcome p {
@@ -1070,7 +1096,7 @@ img {
 }
 
 .story-content h3 {
-    color: var(--primary-blue);
+    color: var(--primary-green);
     margin-bottom: 10px;
 }
 
@@ -1147,6 +1173,9 @@ img {
     color: var(--primary-green);
     font-size: 2.5rem;
     margin-bottom: 3rem;
+    border-bottom: 3px solid var(--primary-yellow);
+    padding-bottom: 10px;
+    display: inline-block;
 }
 
 .grade-section {
@@ -1154,10 +1183,13 @@ img {
 }
 
 .grade-section h3 {
-    color: var(--primary-blue);
+    color: var(--primary-green);
     font-size: 2rem;
     margin-bottom: 2rem;
     text-align: center;
+    border-left: 4px solid var(--primary-yellow);
+    padding-left: 15px;
+    margin-left: -15px;
 }
 
 .students-grid {
@@ -1221,13 +1253,14 @@ img {
 }
 
 .student-info .rank {
-    color: var(--primary-yellow);
+    color: var(--primary-red);
     font-weight: bold;
     margin-bottom: 0.5rem;
 }
 
 .student-info .score {
-    color: var(--text-dark);
+    color: var(--primary-green);
+    font-weight: bold;
 }
 
 /* School Building Section */
@@ -1241,6 +1274,9 @@ img {
     color: var(--primary-green);
     font-size: 2.5rem;
     margin-bottom: 3rem;
+    border-bottom: 3px solid var(--primary-yellow);
+    padding-bottom: 10px;
+    display: inline-block;
 }
 
 .building-images {
@@ -1270,8 +1306,27 @@ img {
     border-radius: 10px;
     box-shadow: var(--shadow);
     transition: transform 0.3s ease;
+    border: 3px solid var(--primary-green);
 }
 
 .building-images img:hover {
     transform: scale(1.05);
+    border-color: var(--primary-yellow);
+}
+
+/* Additional Ethiopian-themed elements */
+.welcome::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(
+        to right,
+        var(--primary-green) 33.33%,
+        var(--primary-yellow) 33.33%,
+        var(--primary-yellow) 66.66%,
+        var(--primary-red) 66.66%
+    );
 }
