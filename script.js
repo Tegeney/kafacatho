@@ -100,29 +100,36 @@ const mainContent = document.querySelector('main');
 const contactForm = document.querySelector('.contact-form');
 const gradeTabs = document.querySelectorAll('.tab-btn');
 const studentCards = document.querySelectorAll('.student-card');
+const header = document.querySelector('.main-header');
 
 // Mobile Menu Toggle
-mobileMenuBtn.addEventListener('click', () => {
-    mobileMenuBtn.classList.toggle('active');
-    navLinks.classList.toggle('active');
-    document.body.classList.toggle('menu-open');
-});
+if (mobileMenuBtn) {
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenuBtn.classList.toggle('active');
+        navLinks.classList.toggle('active');
+        document.body.classList.toggle('menu-open');
+    });
+}
 
 // Close mobile menu when clicking outside
 document.addEventListener('click', (e) => {
-    if (!e.target.closest('.nav-links') && !e.target.closest('.mobile-menu-btn')) {
-        mobileMenuBtn.classList.remove('active');
-        navLinks.classList.remove('active');
-        document.body.classList.remove('menu-open');
+    if (mobileMenuBtn && navLinks) {
+        if (!e.target.closest('.nav-links') && !e.target.closest('.mobile-menu-btn')) {
+            mobileMenuBtn.classList.remove('active');
+            navLinks.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        }
     }
 });
 
 // Skip Link Functionality
-skipLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    mainContent.focus();
-    mainContent.scrollIntoView({ behavior: 'smooth' });
-});
+if (skipLink && mainContent) {
+    skipLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        mainContent.focus();
+        mainContent.scrollIntoView({ behavior: 'smooth' });
+    });
+}
 
 // Smooth Scroll for Navigation Links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -135,9 +142,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 block: 'start'
             });
             // Close mobile menu after clicking a link
-            mobileMenuBtn.classList.remove('active');
-            navLinks.classList.remove('active');
-            document.body.classList.remove('menu-open');
+            if (mobileMenuBtn && navLinks) {
+                mobileMenuBtn.classList.remove('active');
+                navLinks.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            }
         }
     });
 });
@@ -290,6 +299,28 @@ const imageObserver = new IntersectionObserver((entries, observer) => {
 
 lazyImages.forEach(img => imageObserver.observe(img));
 
+// Header Scroll Effect
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll <= 0) {
+        header.classList.remove('scroll-up');
+        return;
+    }
+    
+    if (currentScroll > lastScroll && !header.classList.contains('scroll-down')) {
+        // Scroll Down
+        header.classList.remove('scroll-up');
+        header.classList.add('scroll-down');
+    } else if (currentScroll < lastScroll && header.classList.contains('scroll-down')) {
+        // Scroll Up
+        header.classList.remove('scroll-down');
+        header.classList.add('scroll-up');
+    }
+    lastScroll = currentScroll;
+});
+
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     // Add active class to current navigation item
@@ -304,4 +335,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (gradeTabs.length > 0) {
         gradeTabs[0].click();
     }
+    
+    // Add loading="lazy" to all images that don't have it
+    document.querySelectorAll('img:not([loading])').forEach(img => {
+        img.setAttribute('loading', 'lazy');
+    });
 }); 
